@@ -1,9 +1,9 @@
+import Map from "./Map";
+
 function App() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Map/>
     </div>
   );
 }
