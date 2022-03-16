@@ -16,7 +16,8 @@ class App extends Component {
   }
   
   state = {
-    latitude: null
+    latitude: null,
+    longitude: null,
   } 
 
   render() { 
@@ -24,7 +25,7 @@ class App extends Component {
       <div>
       {/* <Test/> */}
         <Form updateLatLng={this.updateLatLng} />
-      {/* <Map/> */}
+        <Map latitude={this.state.latitude} longitude={this.state.longitude} />
     </div>
     );
   }

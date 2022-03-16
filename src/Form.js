@@ -18,7 +18,7 @@ class Form extends Component {
   }
 
   componentDidMount() {
-    // this.ipApiRequest()
+    this.ipApiRequest()
   }
 
   ipApiRequest = (query) => {
@@ -82,13 +82,8 @@ class Form extends Component {
           </form>
         </section>
         <section className='w-full bg-blue-300'>
-          <ul>
-            <li>{this.state.latitude}</li>     
-            <li>{this.state.longitude}</li>     
-            <li>{this.state.country}</li>     
-            <li>{this.state.region}</li>     
-            <li>{this.state.city}</li>     
-          </ul>
+          <p>{this.state.country}</p>
+          <p>{this.state.city}, {this.state.region}</p>
         </section>
       </div>
     );
