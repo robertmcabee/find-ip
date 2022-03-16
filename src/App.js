@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Map from "./Map";
 import Form from "./Form";
-import Test from "./Test"
 class App extends Component {
   constructor(props) {
     super(props)
@@ -23,10 +22,9 @@ class App extends Component {
   render() { 
     return (
       <div>
-      {/* <Test/> */}
         <Form updateLatLng={this.updateLatLng} />
         <Map latitude={this.state.latitude} longitude={this.state.longitude} />
-    </div>
+      </div>
     );
   }
 }
