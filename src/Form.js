@@ -3,9 +3,12 @@ import axios from 'axios';
 
 class Form extends Component {
   state = {
+    // app data
     textField: '',
+    lastQuery: null,
     error: null,
     isLoaded: false,
+    // data from api
     latitude: null,
     longitude: null,
     country: null,
@@ -19,13 +22,20 @@ class Form extends Component {
   }
 
   ipApiRequest = (query) => {
-    query ??= ''; //changes query to empty string if null or undefined
+    // change query to empty string if null or undefined
+    query ??= '';
     let request = "http://ipwhois.app/json/" + query
-    console.log("______request:")
-    console.log(request)
+    // check for duplicate api call
+    if (this.state.lastQuery === request) {
+      console.log("duplicate query")
+      return
+    } else {
+      this.setState({lastQuery: request});
+    }
+    // make api request
     axios.get(request).then(
       result => {
-        console.log(result)
+        // update state
         this.setState({
           isLoaded: true,
           latitude: result.data.latitude,
@@ -35,9 +45,13 @@ class Form extends Component {
           city: result.data.city,
           ip: result.data.ip,
         });
+        // update ip field to ip from api call if empty
         if (this.state.textField === '') {
           this.setState({textField: result.data.ip})
         } 
+        // pass lat & long to parent element state
+        const updateLatLng = this.props.updateLatLng
+        updateLatLng(result.data.latitude, result.data.longitude)
       },
       error => {
         this.setState({
@@ -50,7 +64,6 @@ class Form extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // if (this.state.ip === this.state.textField) return
     this.ipApiRequest(this.state.textField)
   }
 
@@ -68,14 +81,14 @@ class Form extends Component {
             <input value="Submit" type="submit"/>
           </form>
         </section>
-        <section className='w-full h-32 bg-blue-300'>
-        <ul>
-          <li>{this.state.latitude}</li>     
-          <li>{this.state.longitude}</li>     
-          <li>{this.state.country}</li>     
-          <li>{this.state.region}</li>     
-          <li>{this.state.city}</li>     
-        </ul>
+        <section className='w-full bg-blue-300'>
+          <ul>
+            <li>{this.state.latitude}</li>     
+            <li>{this.state.longitude}</li>     
+            <li>{this.state.country}</li>     
+            <li>{this.state.region}</li>     
+            <li>{this.state.city}</li>     
+          </ul>
         </section>
       </div>
     );
