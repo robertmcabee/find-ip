@@ -24,7 +24,7 @@ class Form extends Component {
   ipApiRequest = (query) => {
     // change query to empty string if null or undefined
     query ??= '';
-    let request = "http://ipwhois.app/json/" + query
+    let request = "https://ipwhois.app/json/" + query
     // check for duplicate api call
     if (this.state.lastQuery === request) {
       console.log("duplicate query")
