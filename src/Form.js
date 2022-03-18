@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Result } from 'postcss';
-
 class Form extends Component {
   state = {
     // app data
