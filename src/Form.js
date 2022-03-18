@@ -19,7 +19,7 @@ class Form extends Component {
   }
 
   componentDidMount() {
-    // this.ipApiRequest()
+    this.ipApiRequest()
   }
 
   ipApiRequest = (query) => {
