@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import Map from "./Map";
 import Form from "./Form";
+import Footer from './Footer';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -23,8 +24,9 @@ class App extends Component {
   render() { 
     return (
       <div className='main'>
-          <Form updateLatLng={this.updateLatLng} /> 
-          <Map latitude={this.state.latitude} longitude={this.state.longitude} />
+        <Form updateLatLng={this.updateLatLng} /> 
+        <Map latitude={this.state.latitude} longitude={this.state.longitude} />
+        <Footer />
       </div>
     );
   }

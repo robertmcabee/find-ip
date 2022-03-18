@@ -79,7 +79,7 @@ class Form extends Component {
 
   render() { 
     return (
-      <div className='text-cyan-900'>
+      <header className='text-cyan-900'>
         <section className='flex justify-center w-full p-3 bg-gradient-to-r from-cyan-500 to-blue-500'>
             <form onSubmit={this.handleSubmit} className='flex justify-items-center space-x-4'>
               <fieldset>
@@ -92,7 +92,7 @@ class Form extends Component {
             <p className='text-md'>{this.state.country}</p>
             <p className='text-lg'>{ this.state.error }{this.state.city}{this.state.region}</p>
         </section>
-      </div>
+      </header>
     );
   }
 }
