@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 import Map from "./Map";
 import Form from "./Form";
 class App extends Component {
@@ -21,9 +22,9 @@ class App extends Component {
 
   render() { 
     return (
-      <div>
-        <Form updateLatLng={this.updateLatLng} />
-        <Map latitude={this.state.latitude} longitude={this.state.longitude} />
+      <div className='main'>
+          <Form updateLatLng={this.updateLatLng} /> 
+          <Map latitude={this.state.latitude} longitude={this.state.longitude} />
       </div>
     );
   }

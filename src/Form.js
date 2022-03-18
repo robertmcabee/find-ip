@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Result } from 'postcss';
 
 class Form extends Component {
   state = {
     // app data
     textField: '',
     lastQuery: null,
-    error: null,
+    error: '',
     isLoaded: false,
     // data from api
     latitude: null,
@@ -18,7 +19,7 @@ class Form extends Component {
   }
 
   componentDidMount() {
-    this.ipApiRequest()
+    // this.ipApiRequest()
   }
 
   ipApiRequest = (query) => {
@@ -35,6 +36,7 @@ class Form extends Component {
     // make api request
     axios.get(request).then(
       result => {
+        console.log(result)
         // update state
         this.setState({
           isLoaded: true,
@@ -45,18 +47,26 @@ class Form extends Component {
           city: result.data.city,
           ip: result.data.ip,
         });
-        // update ip field to ip from api call if empty
-        if (this.state.textField === '') {
-          this.setState({textField: result.data.ip})
-        } 
-        // pass lat & long to parent element state
-        const updateLatLng = this.props.updateLatLng
-        updateLatLng(result.data.latitude, result.data.longitude)
+        if (result.data.success === true) {
+          this.setState({
+            error: '',
+            city: result.data.city + ", "
+          })
+          // update ip field to ip from api call if empty
+          if (this.state.textField === '') {
+            this.setState({textField: result.data.ip})
+          } 
+          // pass lat & long to parent element state
+          const updateLatLng = this.props.updateLatLng
+          updateLatLng(result.data.latitude, result.data.longitude)
+        } else {
+          this.setState({error: "Error: " + result.data.message})
+        }
       },
       error => {
         this.setState({
           isLoaded: true,
-          error
+          error: error
         });
       }
       );
@@ -71,19 +81,18 @@ class Form extends Component {
 
   render() { 
     return (
-      <div>
-        <section className='w-full h-18 bg-blue-400 p-3'>
+      <div className='text-cyan-900'>
+        <section className='flex justify-center w-full p-3 bg-gradient-to-r from-cyan-500 to-blue-500'>
             <form onSubmit={this.handleSubmit} className='flex justify-items-center space-x-4'>
               <fieldset>
-                <label htmlFor="textField">IP:</label>
-                <input type="text" name="textField" value={this.state.textField} onChange={this.handleChange} />
+                <input className='rounded-md p-1.5 text-cyan-900' type="text" placeholder='IP Address' name="textField" value={this.state.textField} onChange={this.handleChange} />
               </fieldset>
-            <input value="Submit" type="submit"/>
+            <input value="Search" type="submit" className='bg-cyan-300 rounded-md p-1.5 cursor-pointer font-bold'/>
           </form>
         </section>
-        <section className='w-full bg-blue-300'>
-          <p>{this.state.country}</p>
-          <p>{this.state.city}, {this.state.region}</p>
+        <section className=' bg-white flex flex-col justify-center align-middle text-center	min-w-fit w-full h-16'>
+            <p className='text-md'>{this.state.country}</p>
+            <p className='text-lg'>{ this.state.error }{this.state.city}{this.state.region}</p>
         </section>
       </div>
     );
