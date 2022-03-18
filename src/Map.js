@@ -11,8 +11,8 @@ class Map extends Component {
       <div className='w-full'>
         <LoadScript googleMapsApiKey={ process.env.REACT_APP_GOOGLE_MAPS_API_KEY }>
           <GoogleMap
-            mapContainerStyle={{ height: "100vh", width: "100%" }}
-            zoom={6}
+            mapContainerStyle={{ height: "90vh", width: "100%" }}
+            zoom={8}
             center={{
               lat: this.props.latitude,
               lng: this.props.longitude
