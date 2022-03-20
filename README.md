@@ -2,7 +2,7 @@
 
 *A simple IP lookup web application*
 
-### [~Live Website~](https://findip.netlify.app)
+### [Live Website](https://findip.netlify.app)
 
 This is a single page web app that uses the Google Maps API and the WhoisIP API in conjunction. Built with Create-React-App utility and Tailwind classes.
 
