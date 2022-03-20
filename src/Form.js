@@ -83,9 +83,9 @@ class Form extends Component {
         <section className='flex justify-center w-full p-3 bg-gradient-to-r from-cyan-500 to-blue-500'>
             <form onSubmit={this.handleSubmit} className='flex justify-items-center space-x-4'>
               <fieldset>
-                <input className='rounded-md p-1.5 text-cyan-900' type="text" placeholder='IP Address' name="textField" value={this.state.textField} onChange={this.handleChange} />
+                <input className='rounded-md p-1.5 text-cyan-900 caret-cyan-500' type="text" placeholder='IP Address' name="textField" value={this.state.textField} onChange={this.handleChange} />
               </fieldset>
-            <input value="Search" type="submit" className='bg-cyan-300 rounded-md p-1.5 cursor-pointer font-bold'/>
+            <input value="Search" type="submit" className='bg-cyan-300 hover:bg-cyan-200 transition duration-200 ease-in-out rounded-md p-1.5 cursor-pointer font-bold'/>
           </form>
         </section>
         <section className=' bg-white flex flex-col justify-center align-middle text-center	min-w-fit w-full h-16'>

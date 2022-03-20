@@ -23,7 +23,7 @@ class App extends Component {
 
   render() { 
     return (
-      <div className='main'>
+      <div className='font-sans'>
         <Form updateLatLng={this.updateLatLng} /> 
         <Map latitude={this.state.latitude} longitude={this.state.longitude} />
         <Footer />
